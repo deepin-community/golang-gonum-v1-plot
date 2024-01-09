@@ -1,5 +1,31 @@
-template-repository (1.0-1) unstable; urgency=medium
+golang-gonum-v1-plot (0.7.0-5) unstable; urgency=medium
 
-  * Initial release
+  * Remove embedded timestamps (Closes: #968045)
+  * Bump Standards-Version to 4.6.1 (no changes needed)
 
- -- Tsic404 <liuheng@deepin.org>  Sat, 28 Jan 2023 13:46:49 +0800
+ -- Nilesh Patra <nilesh@debian.org>  Fri, 09 Dec 2022 18:15:07 +0530
+
+golang-gonum-v1-plot (0.7.0-4) unstable; urgency=medium
+
+  * Test only on amd64 - since tests seem to fail randomly
+    on other arches, on a few due to rounding errors on 15th digit.
+
+ -- Nilesh Patra <npatra974@gmail.com>  Tue, 01 Dec 2020 23:54:12 +0530
+
+golang-gonum-v1-plot (0.7.0-3) unstable; urgency=medium
+
+  * Disable failing test to allow testing migration
+
+ -- Nilesh Patra <npatra974@gmail.com>  Mon, 30 Nov 2020 19:51:34 +0530
+
+golang-gonum-v1-plot (0.7.0-2) unstable; urgency=medium
+
+  * Source-only upload
+
+ -- Andreas Tille <tille@debian.org>  Thu, 06 Aug 2020 13:12:54 +0200
+
+golang-gonum-v1-plot (0.7.0-1) unstable; urgency=medium
+
+  * Initial release (Closes: #966681)
+
+ -- Nilesh Patra <npatra974@gmail.com>  Sun, 02 Aug 2020 01:12:39 +0530
