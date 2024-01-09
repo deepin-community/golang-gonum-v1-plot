@@ -1,0 +1,201 @@
+Author: Nilesh Patra <npatra974@gmail.com>
+Description: Disable tests needing unpackaged dependencies.
+Last Changed: Aug 2 2020
+--- a/palette/moreland/convert_test.go
++++ b/palette/moreland/convert_test.go
+@@ -8,12 +8,13 @@
+ 	"image/color"
+ 	"testing"
+ 
+-	"gonum.org/v1/gonum/floats"
++	//"gonum.org/v1/gonum/floats"
+ )
+ 
+ // TestRgb_sRGBA tests the conversion from linear RGB space to sRGB space.
+ // The expected output value is from
+ // http://www.kennethmoreland.com/color-maps/DivergingColorMapWorkshop.xls
++/*
+ func TestRgb_sRGBA(t *testing.T) {
+ 	testCases := []struct {
+ 		l rgb
+@@ -32,12 +33,14 @@
+ 	}
+ }
+ 
++
+ func sRGBAEqualWithin(a, b sRGBA, tol float64) bool {
+ 	return floats.EqualWithinAbsOrRel(a.R, b.R, tol, tol) &&
+ 		floats.EqualWithinAbsOrRel(a.G, b.G, tol, tol) &&
+ 		floats.EqualWithinAbsOrRel(a.B, b.B, tol, tol) &&
+ 		floats.EqualWithinAbsOrRel(a.A, b.A, tol, tol)
+ }
++*/
+ 
+ // TestSRGBa_rgb tests the conversion from sRGB space to linear RGB space.
+ // The expected output values are from
+--- a/palette/moreland/example_test.go
++++ b/palette/moreland/example_test.go
+@@ -3,7 +3,7 @@
+ // license that can be found in the LICENSE file.
+ 
+ package moreland_test
+-
++/*
+ import (
+ 	"log"
+ 	"math"
+@@ -145,3 +145,4 @@
+ func TestHeatMap(t *testing.T) {
+ 	cmpimg.CheckPlot(Example, t, "moreland.png")
+ }
++*/
+--- a/palette/moreland/luminance_test.go
++++ b/palette/moreland/luminance_test.go
+@@ -11,9 +11,10 @@
+ 
+ 	"golang.org/x/exp/rand"
+ 
+-	"gonum.org/v1/gonum/floats"
++	//"gonum.org/v1/gonum/floats"
+ )
+ 
++/*
+ func TestCreateLuminance(t *testing.T) {
+ 	type testHolder struct {
+ 		controlColors []color.Color
+@@ -89,6 +90,7 @@
+ 	}
+ }
+ 
++
+ func luminanceEqualWithin(a, b *luminance, tol float64) bool {
+ 	if len(a.colors) != len(b.colors) {
+ 		return false
+@@ -116,6 +118,7 @@
+ 		floats.EqualWithinAbsOrRel(a.A, b.A, tol, tol) &&
+ 		floats.EqualWithinAbsOrRel(a.B, b.B, tol, tol)
+ }
++*/
+ 
+ func TestExtendedBlackBody(t *testing.T) {
+ 	scalars := []float64{0, 0.21873483862751875, 0.34506542513775906, 0.4702980511087303, 0.6517482203230537, 0.8413253643355525, 1}
+--- a/plotter/contour_test.go
++++ b/plotter/contour_test.go
+@@ -3,7 +3,7 @@
+ // license that can be found in the LICENSE file.
+ 
+ package plotter
+-
++/*
+ import (
+ 	"flag"
+ 	"fmt"
+@@ -14,7 +14,7 @@
+ 
+ 	"golang.org/x/exp/rand"
+ 
+-	"gonum.org/v1/gonum/mat"
++	//"gonum.org/v1/gonum/mat"
+ 	"gonum.org/v1/plot"
+ 	"gonum.org/v1/plot/palette"
+ 	"gonum.org/v1/plot/vg"
+@@ -22,7 +22,8 @@
+ 
+ var visualDebug = flag.Bool("visual", false, "output images for benchmarks and test data")
+ 
+-type unitGrid struct{ mat.Matrix }
++// type unitGrid struct{ mat.Matrix }
++
+ 
+ func (g unitGrid) Dims() (c, r int)   { r, c = g.Matrix.Dims(); return c, r }
+ func (g unitGrid) Z(c, r int) float64 { return g.Matrix.At(r, c) }
+@@ -473,3 +474,4 @@
+ func (c testContour) Len() int           { return len(c) }
+ func (c testContour) Less(i, j int) bool { return len(c[i].forward) < len(c[j].forward) }
+ func (c testContour) Swap(i, j int)      { c[i], c[j] = c[j], c[i] }
++*/
+--- a/plotter/heat_test.go
++++ b/plotter/heat_test.go
+@@ -3,7 +3,7 @@
+ // license that can be found in the LICENSE file.
+ 
+ package plotter_test
+-
++/*
+ import (
+ 	"fmt"
+ 	"math"
+@@ -90,3 +90,4 @@
+ 		}()
+ 	}
+ }
++*/
+--- a/plotter/volcano
++++ b/plotter/volcano
+@@ -97,4 +97,4 @@
+ EOF
+ R -q -e 'write.table(as.data.frame(volcano), file="volcano_example.go", sep=", ", eol=",\n", col.names=FALSE, row.names=FALSE, append=TRUE)'
+ echo >> volcano_example.go '})}'
+-go fmt volcano_example.go
++#go fmt volcano_example.go
+--- a/plotter/example_heat_test.go
++++ b/plotter/example_heat_test.go
+@@ -3,7 +3,7 @@
+ // license that can be found in the LICENSE file.
+ 
+ package plotter_test
+-
++/*
+ import (
+ 	"fmt"
+ 	"log"
+@@ -89,3 +89,4 @@
+ 		log.Panic(err)
+ 	}
+ }
++*/
+--- a/plotter/example_field_test.go
++++ b/plotter/example_field_test.go
+@@ -3,7 +3,7 @@
+ // license that can be found in the LICENSE file.
+ 
+ package plotter_test
+-
++/*
+ import (
+ 	"image/color"
+ 	"image/png"
+@@ -185,3 +185,4 @@
+ 		log.Panic(err)
+ 	}
+ }
++*/
+--- a/plotter/field_test.go
++++ b/plotter/field_test.go
+@@ -8,7 +8,7 @@
+ 	"testing"
+ 
+ 	"gonum.org/v1/plot"
+-	"gonum.org/v1/plot/cmpimg"
++//	"gonum.org/v1/plot/cmpimg"
+ 	"gonum.org/v1/plot/plotter"
+ 	"gonum.org/v1/plot/vg/draw"
+ 	"gonum.org/v1/plot/vg/vgimg"
+@@ -33,7 +33,7 @@
+ 	}
+ 	return float64(r - f.r/2)
+ }
+-
++/*
+ func TestField(t *testing.T) {
+ 	cmpimg.CheckPlot(ExampleField, t, "field.png")
+ }
+@@ -45,7 +45,7 @@
+ func TestFieldGophers(t *testing.T) {
+ 	cmpimg.CheckPlot(ExampleField_gophers, t, "gopher_field.png")
+ }
+-
++*/
+ func TestFieldDims(t *testing.T) {
+ 	for _, test := range []struct {
+ 		rows int
